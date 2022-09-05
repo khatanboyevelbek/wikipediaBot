@@ -29,7 +29,7 @@ const start = () => {
     bot.command('info', async ctx => {
         return await ctx.reply(`This bot was created by Elbek Khatanboyev. If you find out bot errors, please reach me out. @Elbek_Egamberdiyevich`);
     });
-    // Entered uzbek button
+    // when entered uzbek button
     bot.action('uzbek', async ctx => {
         ctx.editMessageText('O\'zbekcha so\'z kiriting:');
         await wikipedia.setLang('uz');
@@ -46,7 +46,7 @@ const start = () => {
             }
         })
     });
-     // Entered russian button
+     // when entered russian button
     bot.action('russian', async ctx => {
         ctx.editMessageText('Bведите русское слово');
         await wikipedia.setLang('ru');
@@ -63,7 +63,7 @@ const start = () => {
             }
         })
     });
-    // Entered english button
+    // when entered english button
     bot.action('english', async ctx => {
         ctx.editMessageText('Enter a keyword');
         await wikipedia.setLang('en');
