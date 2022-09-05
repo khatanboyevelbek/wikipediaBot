@@ -15,24 +15,25 @@ const start = () => {
     // Start bot
     bot.start(async ctx => {
         const firstName = ctx.from?.first_name as string;
-        return await ctx.reply(`Welcome ${firstName}. Enter some keyword to find out more about that \n Choose a language`, {
+        return await ctx.replyWithHTML(`<b>Welcome ${firstName}. Enter some keyword to find out more about that.</b> \n Choose a language`, {
             reply_markup: keyboards
         });
+    });
+     // Bot info
+     bot.command('info', async ctx => {
+        return await ctx.replyWithHTML(`<b>👨‍💻 This bot was created by Elbek Khatanboyev. If you find out bot errors, please reach me out.</b> @Elbek_Egamberdiyevich`);
     });
     // Change a language 
     bot.command('language', async ctx => {
-        return await ctx.reply('Change a language', {
+        const chat_id = ctx.chat?.id as number;
+        return await ctx.telegram.sendMessage(chat_id,'Change a language', {
             reply_markup: keyboards
         });
     })
-    // Bot info
-    bot.command('info', async ctx => {
-        return await ctx.reply(`This bot was created by Elbek Khatanboyev. If you find out bot errors, please reach me out. @Elbek_Egamberdiyevich`);
-    });
     // when entered uzbek button
-    bot.action('uzbek', async ctx => {
+    bot.action('uzbek', ctx => {
+        wikipedia.setLang('uz');
         ctx.editMessageText('O\'zbekcha so\'z kiriting:');
-        await wikipedia.setLang('uz');
         bot.on('message', async ctx => {
             const message = ctx.message?.text as string;
             const chatId = ctx.chat?.id as number;
@@ -47,9 +48,9 @@ const start = () => {
         })
     });
      // when entered russian button
-    bot.action('russian', async ctx => {
+    bot.action('russian', ctx => {
+        wikipedia.setLang('ru');
         ctx.editMessageText('Bведите русское слово');
-        await wikipedia.setLang('ru');
         bot.on('message', async ctx => {
             const message = ctx.message?.text as string;
             const chatId = ctx.chat?.id as number;
@@ -64,9 +65,9 @@ const start = () => {
         })
     });
     // when entered english button
-    bot.action('english', async ctx => {
+    bot.action('english', ctx => {
+        wikipedia.setLang('en');
         ctx.editMessageText('Enter a keyword');
-        await wikipedia.setLang('en');
         bot.on('message', async ctx => {
             const message = ctx.message?.text as string;
             const chatId = ctx.chat?.id as number;
