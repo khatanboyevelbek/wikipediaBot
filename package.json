@@ -5,11 +5,11 @@
   "main": "server.ts",
   "engines": {
     "node": "16.17.0",
-    "npm": "8.18.0"
+    "npm": "8.19.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts -node server.ts",
+    "start": "ts-node server.ts",
     "dev": "tsc -w & nodemon server.ts"
   },
   "author": "Elbek Khatanboyev",
